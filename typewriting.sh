@@ -1,165 +1,39 @@
 #!/bin/bash
+source text.sh
+source fns.sh
+source variables.sh
+clear
 
-# --------------------------- Number of Columns ---------------------------
-dim_cols=$(tput cols)
-
-if [ $((dim_cols%2)) -eq 0 ]
-  then
-    dim_cols=$dim_cols
-  else
-    ((dim_cols++))
-fi
-
-dim_cols_update=$((dim_cols/2))
-
-# echo $dim_cols_update
-
-# --------------------------- Sentences ---------------------------
-sentence_one="ROBCO INDUSTRIES (TM) UNIFIED OPERATING SYSTEM"
-sentence_two="COPYRIGHT 2075-2077 ROBCO INDUSTRIES"
-sentence_three="-SERVER 1-"
-
-sentence_length_one=${#sentence_one}
-sentence_length_two=${#sentence_two}
-sentence_length_three=${#sentence_three}
-
-
-function_doodars()
-{
-  local var2
-  if [ $(($1%2)) == 0 ]
-  then
-    var2=$1
-    echo $(($var2/2))
-  else
-    var2=$(($1+1))
-    echo $(($var2/2))
-  fi
-}
-
-
-sentence1=$(function_doodars $sentence_length_one)
-sentence2=$(function_doodars $sentence_length_two)
-sentence3=$(function_doodars $sentence_length_three)
-s1=$(($dim_cols_update-$sentence1))
-s2=$(($dim_cols_update-$sentence2))
-s3=$(($dim_cols_update-$sentence3))
-
-
-
-# --------------------------- Variables ---------------------------
-NN=0.05
 
 # --------------------------- Printing ---------------------------
 # Line 1
-for i in $(seq 1 $s1); do printf ' '; done
-while [ ${#sentence_one} -gt 0 ]; do
-  printf '%s' "${sentence_one%${sentence_one#?}}"
-  sentence_one=${sentence_one#?}
-  sleep $NN
-done
-for i in $(seq 1 $s1); do printf ' '; done
+main()
+{
+  function_doo_doos $s1
+  while [ ${#sentence_one} -gt 0 ]; do
+    printf '%b' '\033[1m'"${sentence_one%${sentence_one#?}}"'\033[0m'
+    sentence_one=${sentence_one#?}
+    sleep $NN
+  done
+  function_doo_doos $s1
 
-# Line 2
-for i in $(seq 1 $s2); do printf ' '; done
-while [ ${#sentence_two} -gt 0 ]; do
-  printf '%s' "${sentence_two%${sentence_two#?}}"
-  sentence_two=${sentence_two#?}
-  sleep $NN
-done
+  # Line 2
+  function_doo_doos $s2
+  while [ ${#sentence_two} -gt 0 ]; do
+    printf '%b' '\033[1m'"${sentence_two%${sentence_two#?}}"'\033[0m'
+    sentence_two=${sentence_two#?}
+    sleep $NN
+  done
+  function_doo_doos $s2
 
-for i in $(seq 1 $s2); do printf ' '; done
+  # Line 3
+  function_doo_doos $s3
+  while [ ${#sentence_three} -gt 0 ]; do
+    printf '%b' '\033[1m'"${sentence_three%${sentence_three#?}}"'\033[0m'
+    sentence_three=${sentence_three#?}
+    sleep $NN
+  done
+  function_doo_doos $s3
+}
 
-# Line 3
-for i in $(seq 1 $s3); do printf ' '; done
-while [ ${#sentence_three} -gt 0 ]; do
-  printf '%s' "${sentence_three%${sentence_three#?}}"
-  sentence_three=${sentence_three#?}
-  sleep $NN
-done
-for i in $(seq 1 $s3); do printf ' '; done
-
-
-
-
-
-# #----------------------------------- Excess ----------------------------------------
-# # printf %s "$sentence_two"
-# # printf %s "$sentence_three"
-# # # # echo ${#sentence1}
-# # for i in $(seq 1 $sentence_one); do printf %s "sentence_one"; sleep 0.1; done
-
-
-# # for ((i=0; i<${#sentence_one}; i++)); do echo "${sentence_one:$i:1}"; sleep 0.1;done
-
-# # var="thingtoprint"
-# # for i in ` seq ${#var}`
-# # do
-# #   echo ${var:$i:1}
-# # done
-
-# # for char in $sentence_one; do printf "%q" $char; sleep 0.2; done
-# # while [ ${#sentence_one} -gt 0 ]; do
-# #   printf '%s' "${sentence_one%${sentence_one#?}}"
-# #   sentence_one=${sentence_one#?}
-# #   sleep 0.2
-# # done
-
-# # s='Hi every one. How are you all ....'
-
-# # # char by char
-# # while [ ${#s} -gt 0 ]; do
-# #   printf '%s' "${s%${s#?}}"
-# #   s=${s#?}
-# #   sleep 0.2
-# # done
-
-
-# my_function()
-# {
-#   echo "some result"
-#   return 55
-# }
-# my_function
-
-
-# sentence_one="ROBCO INDUSTRIES (TM) UNIFIED OPERATING SYSTEM"
-# sentence_two="COPYRIGHT 2075-2077 ROBCO INDUSTRIES"
-# sentence_three="-SERVER 1-"
-
-# sentence_length_one=${#sentence_one}
-# sentence_length_two=${#sentence_two}
-# sentence_length_three=${#sentence_three}
-
-# length_fn()
-# {
-#   length=$1
-#   if [ $(($length%2)) -eq 0 ]
-#     then
-#       length=$length
-#     else
-#       (($length++))
-#   fi
-#   return $length
-# }
-
-# echo ${#sentence_one}
-# VAR=$length_fn ${#sentence_one}
-# # echo $VAR
-
-# # VAR=$(length_fn $sentence_length_one)
-# # echo $length_fn $sentence_length_two
-# # length_fn $sentence_length_three
-# # echo $VAR
-# # sentence_length_one_correct=$((sentence_length_one/2))
-# # sentence_length_two_correct=$((sentence_length_two/2))
-# # sentence_length_three_correct=$((sentence_length_three/2))
-
-# # start_point_one=$(($dim_cols_update-$sentence_length_one_correct))
-# # # start_point_two=$(($dim_cols_update-$sentence_length_two_correct))
-# # # start_point_three=$(($dim_cols_update-$sentence_length_three_correct))
-
-# # # --------------------------- Variables ---------------------------
-# # NN=0.05
-
-# # # --------------------------- Printing ---------------------------
+main
