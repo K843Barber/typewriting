@@ -1,10 +1,11 @@
 #!/bin/bash
+
+# --------------------------- File calls ---------------------------
 source src/text.sh
 source src/fns.sh
 source src/variables.sh
+# --------------------------- bash command ---------------------------
 clear
-
-
 # --------------------------- Printing ---------------------------
 # Line 1
 main()
