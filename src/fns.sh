@@ -18,3 +18,12 @@ function_doo_doos()
   for i in $(seq 1 $1); do printf ' '; done
 }
 
+function_doodoos()
+{
+  sentence=$1
+  while [ ${#sentence} -gt 0 ]; do
+    printf '%b' '\033[1m'"${sentence%${sentence#?}}"'\033[0m'
+    sentence=${sentence#?}
+    sleep $NN
+  done
+}
