@@ -23,9 +23,6 @@ sentence_length_one=${#sentence_one}
 sentence_length_two=${#sentence_two}
 sentence_length_three=${#sentence_three}
 
-# echo $sentence_length_one
-# echo $sentence_length_two
-# echo $sentence_length_three
 
 function_doodars()
 {
@@ -40,81 +37,47 @@ function_doodars()
   fi
 }
 
-# declare -i y=11
-# echo $((y%2))
-# var3=$(function_doodars $y)
 
 sentence1=$(function_doodars $sentence_length_one)
 sentence2=$(function_doodars $sentence_length_two)
 sentence3=$(function_doodars $sentence_length_three)
-echo $(($dim_cols_update-$sentence1))
-echo $sentence2
-echo $sentence3
+s1=$(($dim_cols_update-$sentence1))
+s2=$(($dim_cols_update-$sentence2))
+s3=$(($dim_cols_update-$sentence3))
 
-# echo $dim_cols
 
-# ------------------ Successfully made function for this ------------------
-# if [ $((sentence_length_one%2)) -eq 0 ]
-#   then
-#     sentence_length_one=$sentence_length_one
-#   else
-#     ((sentence_length_one++))
-# fi
-
-# if [ $((sentence_length_two%2)) -eq 0 ]
-#   then
-#     sentence_length_two=$sentence_length_two
-#   else
-#     ((sentence_length_two++))
-# fi
-
-# if [ $((sentence_length_three%2)) -eq 0 ]
-#   then
-#     sentence_length_three=$sentence_length_three
-#   else
-#     ((sentence_length_three++))
-# fi
-
-# # --------------------------- Maths behind where to print ---------------------------
-sentence_length_one_correct=$((sentence_length_one/2))
-# sentence_length_two_correct=$((sentence_length_two/2))
-# sentence_length_three_correct=$((sentence_length_three/2))
-
-start_point_one=$(($dim_cols_update-$sentence1))
-# start_point_two=$(($dim_cols_update-$sentence_length_two_correct))
-# start_point_three=$(($dim_cols_update-$sentence_length_three_correct))
 
 # --------------------------- Variables ---------------------------
 NN=0.05
 
 # --------------------------- Printing ---------------------------
 # Line 1
-for i in $(seq 1 $start_point_one); do printf ' '; done
+for i in $(seq 1 $s1); do printf ' '; done
 while [ ${#sentence_one} -gt 0 ]; do
   printf '%s' "${sentence_one%${sentence_one#?}}"
   sentence_one=${sentence_one#?}
   sleep $NN
 done
-for i in $(seq 1 $start_point_one); do printf ' '; done
+for i in $(seq 1 $s1); do printf ' '; done
 
-# # Line 2
-# for i in $(seq 1 $start_point_two); do printf ' '; done
-# while [ ${#sentence_two} -gt 0 ]; do
-#   printf '%s' "${sentence_two%${sentence_two#?}}"
-#   sentence_two=${sentence_two#?}
-#   sleep $NN
-# done
+# Line 2
+for i in $(seq 1 $s2); do printf ' '; done
+while [ ${#sentence_two} -gt 0 ]; do
+  printf '%s' "${sentence_two%${sentence_two#?}}"
+  sentence_two=${sentence_two#?}
+  sleep $NN
+done
 
-# for i in $(seq 1 $start_point_two); do printf ' '; done
+for i in $(seq 1 $s2); do printf ' '; done
 
-# # Line 3
-# for i in $(seq 1 $start_point_three); do printf ' '; done
-# while [ ${#sentence_three} -gt 0 ]; do
-#   printf '%s' "${sentence_three%${sentence_three#?}}"
-#   sentence_three=${sentence_three#?}
-#   sleep $NN
-# done
-# for i in $(seq 1 $start_point_three); do printf ' '; done
+# Line 3
+for i in $(seq 1 $s3); do printf ' '; done
+while [ ${#sentence_three} -gt 0 ]; do
+  printf '%s' "${sentence_three%${sentence_three#?}}"
+  sentence_three=${sentence_three#?}
+  sleep $NN
+done
+for i in $(seq 1 $s3); do printf ' '; done
 
 
 
