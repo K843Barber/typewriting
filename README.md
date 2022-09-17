@@ -1,1 +1,2 @@
-# bash_script_testing
+# Typewrtier
+A little experiment to replicate Fallout style terminal with bash
