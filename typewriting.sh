@@ -1,7 +1,7 @@
 #!/bin/bash
-source text.sh
-source fns.sh
-source variables.sh
+source src/text.sh
+source src/fns.sh
+source src/variables.sh
 clear
 
 
