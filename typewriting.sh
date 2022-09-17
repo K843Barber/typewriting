@@ -1,5 +1,5 @@
 #!/bin/bash
-
+chmod +x
 # --------------------------- File calls ---------------------------
 source src/text.sh
 source src/fns.sh
